@@ -1,4 +1,3 @@
-import React from 'react';
 import BookData from '../data/BookData.json';
 
 export default function updateBooks(title, author, genre, year, pages) {
@@ -11,5 +10,5 @@ export default function updateBooks(title, author, genre, year, pages) {
     pages: pages,
   });
 
-  return [...BookData];
+  return BookData;
 }
