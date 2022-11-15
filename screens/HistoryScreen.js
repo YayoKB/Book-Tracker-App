@@ -6,6 +6,7 @@ import BookData from '../data/BookData.json';
 
 export const HistoryScreen = () => {
   const renderItem = ({item}) => {
+    //the element to render in the FlatList
     return (
       <View style={globalStyles.latestBookView}>
         <FontAwesome5Icon name="book" style={globalStyles.latestBookIcon} />
@@ -45,8 +46,8 @@ export const HistoryScreen = () => {
       console.log('Book Count:', bookCount);
       return (
         <FlatList
-          data={BookData.slice(-3, bookCount)}
-          extraData={books}
+          data={BookData.slice(-3, bookCount)} //displays the last 3 books in BookData
+          extraData={books} //added to ensure that the data re-renders but... doesn't work as I thought
           renderItem={renderItem}
           keyExtractor={item => item.bookID}
           style={{width: '77.7%'}}
