@@ -19,6 +19,7 @@ var avg = 0;
 var nBooks = 0;
 
 function checkAndAddGenre(genreToAdd) {
+  //changes the raw genre value from the picker to a readable formatted value for display, then increases the number of books of that genre in BookNumbers.json
   switch (genreToAdd) {
     case 'scifi':
       BookNumbers.nScifi++;
