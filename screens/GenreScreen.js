@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import {SafeAreaView, ScrollView, Text, View, FlatList} from 'react-native';
+import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {globalStyles} from '../styles/globalStyles';
-import BookData from '../data/BookData.json';
 import BookNumbers from '../data/BookNumbers.json';
 
 export const GenreScreen = () => {
