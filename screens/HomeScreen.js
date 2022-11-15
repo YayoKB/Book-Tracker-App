@@ -11,8 +11,6 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {globalStyles} from '../styles/globalStyles';
 
-// import {Book} from '../books';
-
 export function HomeScreen({route, navigation}) {
   //take params from Addition Screen, and assign values if they arrive as empty (i.e. when starting app and no books have been added)
   const {
@@ -35,7 +33,9 @@ export function HomeScreen({route, navigation}) {
 
   let capitalisedGenre = '';
 
-  switch (bookGenre) {
+  switch (
+    bookGenre //change unformatted raw genre into formatted value for display
+  ) {
     case 'scifi':
       capitalisedGenre = 'Science Fiction';
       break;
@@ -77,7 +77,7 @@ export function HomeScreen({route, navigation}) {
       console.log('No valid genre found');
   }
 
-  var displayType = '';
+  let displayType = '';
 
   if (totalPages == 0) {
     displayType = 'flex';
