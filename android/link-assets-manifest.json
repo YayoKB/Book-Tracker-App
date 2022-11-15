@@ -1,0 +1,61 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/NunitoSans-Black.ttf",
+      "sha1": "69e9061477b8d2ffcec035185ff4eaaedb7b2755"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-BlackItalic.ttf",
+      "sha1": "fdd8615c710fda273d8e477522101db7f33a01ad"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-Bold.ttf",
+      "sha1": "c7e885d00c275b5385579d3479f48392013334e7"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-BoldItalic.ttf",
+      "sha1": "6604022a8205b1ee1ca39d03105fa9b35b7c7610"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-ExtraBold.ttf",
+      "sha1": "15819f2aba91bda9d9931f50aed113eba5adde1e"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-ExtraBoldItalic.ttf",
+      "sha1": "884b03e005de126ebc664ad2b5cfcf0b403bad5c"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-ExtraLight.ttf",
+      "sha1": "1172197f8dac0bc59acb799266234c0d21454ce6"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-ExtraLightItalic.ttf",
+      "sha1": "3bf22d8c4efbe731d68f5497ea89d8fe7d983ca3"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-Italic.ttf",
+      "sha1": "7b284787a98cd1053bf94813edf609895ef3c0fc"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-Light.ttf",
+      "sha1": "25cf2d985ec471c3f36c8180df67fa3021ccc002"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-LightItalic.ttf",
+      "sha1": "57315b0c4ee990a41daf8cb3aaa2c8920ed0fd03"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-Regular.ttf",
+      "sha1": "771b9299e1d5d4239c032c7d4243a6f9343f89c4"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-SemiBold.ttf",
+      "sha1": "85055562e9e48d7c1ca4eee938f5cf90f740b3c1"
+    },
+    {
+      "path": "assets/fonts/NunitoSans-SemiBoldItalic.ttf",
+      "sha1": "ebb9afd11ae62c64149392c6c95e5485f2923564"
+    }
+  ]
+}
