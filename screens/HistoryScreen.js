@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {SafeAreaView, ScrollView, Text, View, FlatList} from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {globalStyles} from '../styles/globalStyles';
-import BookData from '../data/BookData.json';
+import BookContext from '../context/BookContext';
 
 export const HistoryScreen = () => {
   const renderItem = ({item}) => {
@@ -35,19 +35,18 @@ export const HistoryScreen = () => {
     );
   };
 
-  const [bookCount, setBookCount] = useState(BookData.length);
-  const [books, setBooks] = useState([...BookData]);
+  const {bookData, bookCount} = useContext(BookContext);
 
   const DisplayList = () => {
-    if (BookData[BookData.length - 1].bookID === 0) {
+    if (bookCount == 1) {
       console.log('Book count empty (expected 1):', bookCount);
       return <Header />;
     } else {
       console.log('Book Count:', bookCount);
       return (
         <FlatList
-          data={BookData.slice(-3, bookCount)} //displays the last 3 books in BookData
-          extraData={books} //added to ensure that the data re-renders but... doesn't work as I thought
+          data={bookData} //displays the last 3 books in BookData
+          // extraData={bookData} //added to ensure that the data re-renders but... doesn't work as I thought
           renderItem={renderItem}
           keyExtractor={item => item.bookID}
           style={{width: '77.7%'}}

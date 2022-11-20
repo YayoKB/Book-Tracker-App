@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,57 +10,11 @@ import {
 import {globalStyles} from '../styles/globalStyles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Picker} from '@react-native-picker/picker';
-import BookData from '../data/BookData.json';
-import BookNumbers from '../data/BookNumbers.json';
-import updateBooks from '../functions/updateBooks';
+import BookContext from '../context/BookContext';
 
 var total = 0;
 var avg = 0;
 var nBooks = 0;
-
-function checkAndAddGenre(genreToAdd) {
-  //changes the raw genre value from the picker to a readable formatted value for display, then increases the number of books of that genre in BookNumbers.json
-  switch (genreToAdd) {
-    case 'scifi':
-      BookNumbers.nScifi++;
-      break;
-
-    case 'fantasy':
-      BookNumbers.nFantasy++;
-      break;
-
-    case 'romance':
-      BookNumbers.nFantasy++;
-      break;
-
-    case 'adventure':
-      BookNumbers.nAdventure++;
-      break;
-
-    case 'mystery':
-      BookNumbers.nMystery++;
-      break;
-
-    case 'horror':
-      BookNumbers.nHorror++;
-      break;
-
-    case 'thriller':
-      BookNumbers.nThriller++;
-      break;
-
-    case 'history':
-      BookNumbers.nHistory++;
-      break;
-
-    case 'biography':
-      BookNumbers.nBiography++;
-      break;
-
-    default:
-      console.log('No valid genre added');
-  }
-}
 
 export function AdditionScreen({navigation}) {
   const [title, setTitle] = useState('');
@@ -69,7 +23,14 @@ export function AdditionScreen({navigation}) {
   const [selectedGenre, setSelectedGenre] = useState('scifi');
   const [year, setYear] = useState('');
   const [pages, setPages] = useState(0);
-  const [books, setBooks] = useState(...[BookData]);
+  const {
+    bookData,
+    bookCount,
+    setBookData,
+    bookNumbers,
+    increaseGenreCount,
+    updateBooks,
+  } = useContext(BookContext);
 
   function AddBookButton() {
     return (
@@ -88,24 +49,31 @@ export function AdditionScreen({navigation}) {
               'Please enter a number greater than 0 for the number of pages.',
             );
           } else {
+            console.log('');
+            console.log('-------- ADDING A BOOK ---------');
+            console.log('bookCount before:', bookCount);
             nBooks++;
             total = total + parsedPages;
             avg = (total / nBooks).toFixed(1);
+            console.log('About to increase genre count.');
+            console.log('bookNumbers before increase:');
+            console.log(bookNumbers);
+            increaseGenreCount(selectedGenre);
+            console.log('Genre count increased! Genre count after:');
+            console.log(bookNumbers);
+            console.log('');
 
-            // BookData.push({
-            //   bookID: BookData.length + 1,
-            //   title: title,
-            //   author: author,
-            //   genre: selectedGenre,
-            //   year: year,
-            //   pages: parsedPages,
-            // });
-
-            setBooks([
+            console.log('About to update bookData.');
+            console.log('bookData before update:');
+            console.log(bookData);
+            setBookData([
               ...updateBooks(title, author, selectedGenre, year, parsedPages),
             ]);
+            console.log('bookData updated! bookData after:');
+            console.log(bookData);
+            console.log('');
 
-            checkAndAddGenre(selectedGenre);
+            console.log('bookCount after:', bookCount);
 
             /*Navigate to Home screen with below params */
             navigation.navigate('Home', {
@@ -124,9 +92,8 @@ export function AdditionScreen({navigation}) {
             setYear('');
             setPages('');
 
-            console.log('Number of books within BookData:', BookData.length);
-            console.log(books);
-            console.log(BookData);
+            console.log('---------- BOOK ADDED ----------');
+            console.log('');
           }
         }}>
         <View style={globalStyles.button}>
