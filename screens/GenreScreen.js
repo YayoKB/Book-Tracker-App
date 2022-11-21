@@ -1,19 +1,11 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {globalStyles} from '../styles/globalStyles';
-import BookNumbers from '../data/BookNumbers.json';
+import BookContext from '../context/BookContext';
 
 export const GenreScreen = () => {
-  const [scifiCount, setScifiCount] = useState(BookNumbers.nScifi);
-  const [fantasyCount, setFantasyCount] = useState(BookNumbers.nFantasy);
-  const [romanceCount, setRomanceCount] = useState(BookNumbers.nRomance);
-  const [adventureCount, setAdventureCount] = useState(BookNumbers.nAdventure);
-  const [mysteryCount, setMysteryCount] = useState(BookNumbers.nMystery);
-  const [horrorCount, setHorrorCount] = useState(BookNumbers.nHorror);
-  const [thrillerCount, setThrillerCount] = useState(BookNumbers.nThriller);
-  const [historyCount, setHistoryCount] = useState(BookNumbers.nHistory);
-  const [biographyCount, setBiographyCount] = useState(BookNumbers.nBiography);
+  const {bookNumbers} = useContext(BookContext);
 
   return (
     <SafeAreaView>
@@ -32,47 +24,65 @@ export const GenreScreen = () => {
             <View style={globalStyles.genresView}>
               <View style={globalStyles.genreGroupView}>
                 <Text style={globalStyles.genreType}>Science Fiction</Text>
-                <Text style={globalStyles.genreNumber}>{scifiCount}</Text>
+                <Text style={globalStyles.genreNumber}>
+                  {bookNumbers.nScifi}
+                </Text>
               </View>
 
               <View style={globalStyles.genreGroupView}>
                 <Text style={globalStyles.genreType}>Fantasy</Text>
-                <Text style={globalStyles.genreNumber}>{fantasyCount}</Text>
+                <Text style={globalStyles.genreNumber}>
+                  {bookNumbers.nFantasy}
+                </Text>
               </View>
 
               <View style={globalStyles.genreGroupView}>
                 <Text style={globalStyles.genreType}>Romance</Text>
-                <Text style={globalStyles.genreNumber}>{romanceCount}</Text>
+                <Text style={globalStyles.genreNumber}>
+                  {bookNumbers.nRomance}
+                </Text>
               </View>
 
               <View style={globalStyles.genreGroupView}>
                 <Text style={globalStyles.genreType}>Adventure</Text>
-                <Text style={globalStyles.genreNumber}>{adventureCount}</Text>
+                <Text style={globalStyles.genreNumber}>
+                  {bookNumbers.nAdventure}
+                </Text>
               </View>
 
               <View style={globalStyles.genreGroupView}>
                 <Text style={globalStyles.genreType}>Mystery</Text>
-                <Text style={globalStyles.genreNumber}>{mysteryCount}</Text>
+                <Text style={globalStyles.genreNumber}>
+                  {bookNumbers.nMystery}
+                </Text>
               </View>
 
               <View style={globalStyles.genreGroupView}>
                 <Text style={globalStyles.genreType}>Horror</Text>
-                <Text style={globalStyles.genreNumber}>{horrorCount}</Text>
+                <Text style={globalStyles.genreNumber}>
+                  {bookNumbers.nHorror}
+                </Text>
               </View>
 
               <View style={globalStyles.genreGroupView}>
                 <Text style={globalStyles.genreType}>Thriller</Text>
-                <Text style={globalStyles.genreNumber}>{thrillerCount}</Text>
+                <Text style={globalStyles.genreNumber}>
+                  {bookNumbers.nThriller}
+                </Text>
               </View>
 
               <View style={globalStyles.genreGroupView}>
                 <Text style={globalStyles.genreType}>History</Text>
-                <Text style={globalStyles.genreNumber}>{historyCount}</Text>
+                <Text style={globalStyles.genreNumber}>
+                  {bookNumbers.nHistory}
+                </Text>
               </View>
 
               <View style={globalStyles.genreGroupView}>
                 <Text style={globalStyles.genreType}>Biography</Text>
-                <Text style={globalStyles.genreNumber}>{biographyCount}</Text>
+                <Text style={globalStyles.genreNumber}>
+                  {bookNumbers.nBiography}
+                </Text>
               </View>
             </View>
           </View>

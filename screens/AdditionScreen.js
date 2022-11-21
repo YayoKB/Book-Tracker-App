@@ -17,20 +17,14 @@ var avg = 0;
 var nBooks = 0;
 
 export function AdditionScreen({navigation}) {
+  let parsedGenre = 'Science Fiction';
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [genre, setGenre] = useState(''); //first genre version
   const [selectedGenre, setSelectedGenre] = useState('scifi');
   const [year, setYear] = useState('');
   const [pages, setPages] = useState(0);
-  const {
-    bookData,
-    bookCount,
-    setBookData,
-    bookNumbers,
-    increaseGenreCount,
-    updateBooks,
-  } = useContext(BookContext);
+  const {incBookCount, increaseGenreCount, updateBooks} =
+    useContext(BookContext);
 
   function AddBookButton() {
     return (
@@ -49,37 +43,64 @@ export function AdditionScreen({navigation}) {
               'Please enter a number greater than 0 for the number of pages.',
             );
           } else {
-            console.log('');
-            console.log('-------- ADDING A BOOK ---------');
-            console.log('bookCount before:', bookCount);
             nBooks++;
             total = total + parsedPages;
             avg = (total / nBooks).toFixed(1);
-            console.log('About to increase genre count.');
-            console.log('bookNumbers before increase:');
-            console.log(bookNumbers);
-            increaseGenreCount(selectedGenre);
-            console.log('Genre count increased! Genre count after:');
-            console.log(bookNumbers);
-            console.log('');
 
-            console.log('About to update bookData.');
-            console.log('bookData before update:');
-            console.log(bookData);
-            setBookData([
-              ...updateBooks(title, author, selectedGenre, year, parsedPages),
-            ]);
-            console.log('bookData updated! bookData after:');
-            console.log(bookData);
-            console.log('');
+            switch (
+              selectedGenre //make selectedGenre readable
+            ) {
+              case 'scifi':
+                parsedGenre = 'Science Fiction';
+                break;
 
-            console.log('bookCount after:', bookCount);
+              case 'fantasy':
+                parsedGenre = 'Fantasy';
+                break;
+
+              case 'romance':
+                parsedGenre = 'Romance';
+                break;
+
+              case 'adventure':
+                parsedGenre = 'Adventure';
+                break;
+
+              case 'mystery':
+                parsedGenre = 'Mystery';
+                break;
+
+              case 'horror':
+                parsedGenre = 'Horror';
+                break;
+
+              case 'thriller':
+                parsedGenre = 'Thriller';
+                break;
+
+              case 'history':
+                parsedGenre = 'History';
+                break;
+
+              case 'biography':
+                parsedGenre = 'Biography';
+                break;
+
+              default:
+                console.alert('No valid genre to parse.');
+            }
+
+            increaseGenreCount(parsedGenre);
+
+            updateBooks(nBooks, title, author, parsedGenre, year, parsedPages);
+
+            incBookCount();
 
             /*Navigate to Home screen with below params */
             navigation.navigate('Home', {
               bookTitle: title,
               bookAuthor: author,
-              bookGenre: selectedGenre,
+              bookGenre: parsedGenre,
               bookYear: year,
               bookPages: parsedPages,
               totalPages: total,
@@ -88,12 +109,8 @@ export function AdditionScreen({navigation}) {
             setTitle('');
             setAuthor('');
             setSelectedGenre('scifi');
-            setGenre('');
             setYear('');
             setPages('');
-
-            console.log('---------- BOOK ADDED ----------');
-            console.log('');
           }
         }}>
         <View style={globalStyles.button}>

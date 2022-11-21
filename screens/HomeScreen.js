@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   Text,
@@ -30,52 +30,6 @@ export function HomeScreen({route, navigation}) {
     totalPages: 0,
     avgPages: 0,
   };
-
-  let capitalisedGenre = '';
-
-  switch (
-    bookGenre //change unformatted raw genre into formatted value for display
-  ) {
-    case 'scifi':
-      capitalisedGenre = 'Science Fiction';
-      break;
-
-    case 'fantasy':
-      capitalisedGenre = 'Fantasy';
-      break;
-
-    case 'romance':
-      capitalisedGenre = 'Romance';
-      break;
-
-    case 'adventure':
-      capitalisedGenre = 'Adventure';
-      break;
-
-    case 'mystery':
-      capitalisedGenre = 'Mystery';
-      break;
-
-    case 'horror':
-      capitalisedGenre = 'Horror';
-      break;
-
-    case 'thriller':
-      capitalisedGenre = 'Thriller';
-      break;
-
-    case 'history':
-      capitalisedGenre = 'History';
-      break;
-
-    case 'biography':
-      capitalisedGenre = 'Biography';
-      break;
-
-    default:
-      capitalisedGenre = 'No Genre';
-      console.log('No valid genre found');
-  }
 
   let displayType = '';
 
@@ -117,9 +71,7 @@ export function HomeScreen({route, navigation}) {
             </View>
 
             <View style={globalStyles.bookDetailsItemView}>
-              <Text style={globalStyles.bookDetailsItem}>
-                {capitalisedGenre}
-              </Text>
+              <Text style={globalStyles.bookDetailsItem}>{bookGenre}</Text>
               <Text style={globalStyles.bookDetailsItem}>{bookYear}</Text>
               <Text style={globalStyles.bookDetailsItem}>
                 {bookPages} Pages

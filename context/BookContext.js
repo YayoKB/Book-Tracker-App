@@ -1,88 +1,74 @@
 import React, {useState} from 'react';
 
-import BookData from '../data/BookData.json';
 import BookNumbers from '../data/BookNumbers.json';
 
 const BookContext = React.createContext();
 
-export const BookProvider = ({children}) => {
-  const [bookData, setBookData] = useState(BookData);
+export function BookProvider({children}) {
+  const [bookData, setBookData] = useState([]);
   const [bookNumbers, setBookNumbers] = useState(BookNumbers);
-  const [bookCount, setBookCount] = useState(bookData.length);
+  const [bookCount, setBookCount] = useState(0);
 
-  function increaseGenreCount(genreToIncrease) {
-    let countSciFi = bookNumbers.nScifi;
-
-    switch (genreToIncrease) {
-      case 'scifi':
-        setBookNumbers({...bookNumbers, nScifi: countSciFi + 1});
-        break;
-
-      case 'fantasy':
-        setBookNumbers(bookNumbers.nFantasy++);
-        break;
-
-      case 'romance':
-        setBookNumbers(bookNumbers.nFantasy++);
-        break;
-
-      case 'adventure':
-        setBookNumbers(bookNumbers.nAdventure++);
-        break;
-
-      case 'mystery':
-        setBookNumbers(bookNumbers.nMystery++);
-        break;
-
-      case 'horror':
-        setBookNumbers(bookNumbers.nHorror++);
-        break;
-
-      case 'thriller':
-        setBookNumbers(bookNumbers.nThriller++);
-        break;
-
-      case 'history':
-        setBookNumbers(bookNumbers.nHistory++);
-        break;
-
-      case 'biography':
-        setBookNumbers(bookNumbers.nBiography++);
-        break;
-
-      default:
-        console.log('No valid genre added');
-    }
-  }
-
-  function updateBooks(title, author, genre, year, pages) {
-    BookData.push({
-      bookID: BookData.length + 1,
-      title: title,
-      author: author,
-      genre: genre,
-      year: year,
-      pages: pages,
+  const increaseGenreCount = genreToIncrease => {
+    setBookNumbers(prevState => {
+      switch (genreToIncrease) {
+        case 'Science Fiction':
+          return {...prevState, nScifi: prevState.nScifi + 1};
+          break;
+        case 'Fantasy':
+          return {...prevState, nFantasy: prevState.nFantasy + 1};
+          break;
+        case 'Romance':
+          return {...prevState, nRomance: prevState.nRomance + 1};
+          break;
+        case 'Adventure':
+          return {...prevState, nAdventure: prevState.nAdventure + 1};
+          break;
+        case 'Mystery':
+          return {...prevState, nMystery: prevState.nMystery + 1};
+          break;
+        case 'Horror':
+          return {...prevState, nHorror: prevState.nHorror + 1};
+          break;
+        case 'Thriller':
+          return {...prevState, nThriller: prevState.nThriller + 1};
+          break;
+        case 'History':
+          return {...prevState, nHistory: prevState.nHistory + 1};
+          break;
+        case 'Biography':
+          return {...prevState, nBiography: prevState.nBiography + 1};
+          break;
+        default:
+          return console.alert('No valid genre to increase.');
+      }
     });
+  };
 
-    return BookData;
-  }
+  const updateBooks = (id, title, author, genre, year, pages) => {
+    setBookData(prevState => [
+      ...prevState,
+      {id, title, author, genre, year, pages},
+    ]);
+  };
+
+  const incBookCount = () => {
+    setBookCount(prevState => prevState + 1);
+  };
 
   return (
     <BookContext.Provider
       value={{
         bookData,
-        setBookData,
         bookNumbers,
-        setBookNumbers,
         bookCount,
-        setBookCount,
+        incBookCount,
         increaseGenreCount,
         updateBooks,
       }}>
       {children}
     </BookContext.Provider>
   );
-};
+}
 
 export default BookContext;

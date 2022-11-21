@@ -1,10 +1,16 @@
 import React, {useContext, useState} from 'react';
-import {SafeAreaView, ScrollView, Text, View, FlatList} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {globalStyles} from '../styles/globalStyles';
 import BookContext from '../context/BookContext';
 
-export const HistoryScreen = () => {
+export const HistoryScreen = ({navigation}) => {
   const renderItem = ({item}) => {
     //the element to render in the FlatList
     return (
@@ -37,18 +43,43 @@ export const HistoryScreen = () => {
 
   const {bookData, bookCount} = useContext(BookContext);
 
+  const GoToAddButton = () => {
+    return (
+      <TouchableOpacity
+        style={{
+          width: '66.7%',
+          marginBottom: 40,
+          marginTop: 32,
+          alignSelf: 'center',
+        }}
+        onPress={() => {
+          navigation.navigate('AddBook');
+        }}>
+        <View style={globalStyles.button}>
+          <Text style={globalStyles.buttonText}>GO TO ADD A BOOK</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   const DisplayList = () => {
-    if (bookCount == 1) {
-      console.log('Book count empty (expected 1):', bookCount);
-      return <Header />;
+    if (bookCount == 0) {
+      return (
+        <View style={{width: '77.7%'}}>
+          <Header />
+          <Text style={globalStyles.heading3Sub}>
+            No books to show, go add some!
+          </Text>
+          <GoToAddButton />
+        </View>
+      );
     } else {
-      console.log('Book Count:', bookCount);
       return (
         <FlatList
-          data={bookData} //displays the last 3 books in BookData
-          // extraData={bookData} //added to ensure that the data re-renders but... doesn't work as I thought
+          data={bookData.slice(-3, bookData.length)} //displays the last 3 books in bookData
+          extraData={bookData}
           renderItem={renderItem}
-          keyExtractor={item => item.bookID}
+          keyExtractor={item => item.id}
           style={{width: '77.7%'}}
           ListHeaderComponent={Header}
         />
