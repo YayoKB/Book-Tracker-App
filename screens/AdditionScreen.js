@@ -12,9 +12,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Picker} from '@react-native-picker/picker';
 import BookContext from '../context/BookContext';
 
-var total = 0;
-var avg = 0;
-var nBooks = 0;
+let total = 0;
+let avg = 0;
+let nBooks = 0;
 
 export function AdditionScreen({navigation}) {
   let parsedGenre = 'Science Fiction';
