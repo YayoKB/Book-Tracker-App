@@ -58,7 +58,7 @@ This project formed part of the Mobile App Scripting module where we had to deve
 ## ✨ End Result
 - 94% for Part 1
 - 98% for Part 2
-- Awaiting results for Part 3
+- 100% for Part 3 
 
 ## 🤓 What I learned
 This was my first time working with React Native (and the React library in general). I learned a lot about React Native, components, navigation, Javascript (ES6+) features such as arrow functions, Context API and working with JSON data.
